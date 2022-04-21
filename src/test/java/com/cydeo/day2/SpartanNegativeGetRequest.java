@@ -24,8 +24,8 @@ public class SpartanNegativeGetRequest {
     @Test
     public void test1(){
 
-        Response response = given().
-                accept(ContentType.JSON)
+        Response response = given().log().all()
+                .accept(ContentType.JSON)
                 .when()
                 .get("/api/spartans");
         //print the status code
@@ -52,7 +52,7 @@ public class SpartanNegativeGetRequest {
     @DisplayName("GET request with Accept XML individual Spartan")
     @Test
     public void test2(){
-     Response response = given()
+     Response response = given().log().all()
                     .accept(ContentType.XML)
                     .when().get("/api/spartans/10");
 

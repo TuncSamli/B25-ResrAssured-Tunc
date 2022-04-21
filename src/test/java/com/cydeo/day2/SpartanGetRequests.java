@@ -20,13 +20,13 @@ public class SpartanGetRequests {
      */
     @DisplayName("GET all spartans")
     @Test
-    public void test1(){
+    public void test1() {
 
         Response response = RestAssured.
                 given().
-                       accept(ContentType.JSON)
+                accept(ContentType.JSON)
                 .when()
-                         .get(url + "/api/spartans");
+                .get(url + "/api/spartans");
         //print the status code
         System.out.println("response.statusCode() = " + response.statusCode());
         //print the content type
@@ -34,10 +34,10 @@ public class SpartanGetRequests {
 
         //how to test API ?
         //verify status code is 200
-        Assertions.assertEquals(200,response.statusCode());
+        Assertions.assertEquals(200, response.statusCode());
 
         //verify content type is application json
-        Assertions.assertEquals("application/json",response.contentType());
+        Assertions.assertEquals("application/json", response.contentType());
 
     }
 
@@ -51,43 +51,43 @@ public class SpartanGetRequests {
 
     @DisplayName("GET individual spartan")
     @Test
-    public void test2(){
+    public void test2() {
 
         Response response = RestAssured.given().accept(ContentType.JSON)
                 .when()
                 .get(url + "/api/spartans/3");
 
         //verify status code is 200
-        Assertions.assertEquals(200,response.getStatusCode());
+        Assertions.assertEquals(200, response.getStatusCode());
 
         //verify content type is application/json
-        Assertions.assertEquals("application/json",response.getContentType());
+        Assertions.assertEquals("application/json", response.getContentType());
 
         //verify Fidole exist in json body
         Assertions.assertTrue(response.body().asString().contains("Fidole"));
     }
 
-     /*
-        Given no headers provided
-        When Users send GET request to /api/hello
-        Then response status code should be 200
-        And Content type header should be "text/plain;charset=UTF-8"
-        And header should contain Date
-        And Content-Length should be 17
-        And body should be “Hello from Sparta"
-        */
+    /*
+       Given no headers provided
+       When Users send GET request to /api/hello
+       Then response status code should be 200
+       And Content type header should be "text/plain;charset=UTF-8"
+       And header should contain Date
+       And Content-Length should be 17
+       And body should be “Hello from Sparta"
+       */
     @DisplayName("GET request to /api/hello endpoint")
     @Test
-    public void test3(){
+    public void test3() {
 
         Response response = RestAssured.when().get(url + "/api/hello");
 
 
         //verify status code
-        Assertions.assertEquals(200,response.statusCode());
+        Assertions.assertEquals(200, response.statusCode());
 
         //verify content type
-        Assertions.assertEquals("text/plain;charset=UTF-8",response.contentType());
+        Assertions.assertEquals("text/plain;charset=UTF-8", response.contentType());
 
         //verify Date header exists in Response headers
         //we use hasHeaderWithName method to verify header exists or not - it returns boolean
@@ -98,10 +98,10 @@ public class SpartanGetRequests {
         System.out.println("response.header(\"Connection\") = " + response.header("Connection"));
 
         //verify content length is 17
-        Assertions.assertEquals("17",response.header("Content-Length"));
+        Assertions.assertEquals("17", response.header("Content-Length"));
 
         //verify body is "hello from sparta"
-        Assertions.assertEquals("Hello from Sparta",response.body().asString());
+        Assertions.assertEquals("Hello from Sparta", response.body().asString());
 
     }
 }
